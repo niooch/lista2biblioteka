@@ -1,0 +1,50 @@
+# Maven output directories
+target/
+
+# Compiled bytecode
+*.class
+
+# Log files
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mac OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Eclipse and IntelliJ IDEA project files
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.iws
+
+# Maven
+mvnw
+mvnw.cmd
+.wrapper/
+!/.mvn/wrapper/maven-wrapper.jar
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+*.nb-gradle/
+
+# VS Code
+.vscode/
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Environment-specific configuration files
+.env

@@ -1,0 +1,79 @@
+@startuml
+
+' Definicje klas
+class Czytelnik {
+    - int id
+    - String imieNazwisko
+    + int getId()
+    + void setId(int id)
+    + String getImieNazwisko()
+    + void setImieNazwisko(String imieNazwisko)
+    + String toString()
+}
+
+class Ksiazka {
+    - String tytul
+    - String autor
+    - List<Egzemplarz> egzemplarze
+    + String getTytul()
+    + String getAutor()
+    + List<Egzemplarz> getEgzemplarze()
+    + void dodajEgzemplarz(Egzemplarz egzemplarz)
+}
+
+class Egzemplarz {
+    - int id
+    - boolean wypozyczony
+    - Czytelnik aktualnyCzytelnik
+    + int getId()
+    + boolean isWypozyczony()
+    + void setWypozyczony(boolean wypozyczony)
+    + Czytelnik getAktualnyCzytelnik()
+    + void setAktualnyCzytelnik(Czytelnik czytelnik)
+}
+
+class BibliotekaSerwis {
+    - KsiazkaRepo ksiazkaRepo
+    - CzytelnikRepo czytelnikRepo
+    + Ksiazka dodajKsiazke(String tytul, String autor)
+    + Egzemplarz dodajEgzemplarz(Ksiazka ksiazka)
+    + Czytelnik dodajCzytelnik(String imieNazwisko)
+    + boolean wypozyczEgzemplarz(String tytul, int egzemplarzId, int czytelnikId)
+    + boolean zwrocEgzemplarz(String tytul, int egzemplarzId)
+    + List<Ksiazka> getAllKsiazki()
+}
+
+class ArchiwumKsiazkaRepo {
+    - List<Ksiazka> ksiazki
+    + void dodajKsiazke(Ksiazka ksiazka)
+    + List<Ksiazka> pobierzWszystkie()
+}
+
+class ArchiwumCzytelnikRepo {
+    - List<Czytelnik> czytelnicy
+    + void dodajCzytelnik(Czytelnik czytelnik)
+    + Czytelnik znajdzCzytelnika(int id)
+}
+
+class Ui {
+    - BibliotekaSerwis bibliotekaSerwis
+    + void start()
+    + void wyswietlKsiazki()
+    + void dodajKsiazke()
+    + void dodajEgzemplarz()
+    + void dodajCzytelnika()
+    + void wypozyczEgzemplarz()
+    + void zwrocEgzemplarz()
+}
+
+' Relacje miedzy klasami
+Ksiazka "1" o-- "0..*" Egzemplarz : zawiera
+Czytelnik "1" <-- "0..1" Egzemplarz : aktualnyCzytelnik
+BibliotekaSerwis --> KsiazkaRepo : uzywa
+BibliotekaSerwis --> CzytelnikRepo : uzywa
+BibliotekaSerwis --> Ksiazka : operuje na
+BibliotekaSerwis --> Egzemplarz : operuje na
+BibliotekaSerwis --> Czytelnik : operuje na
+Ui --> BibliotekaSerwis : zaleznosc
+
+@enduml

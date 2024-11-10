@@ -1,0 +1,56 @@
+@startuml
+
+actor Czytelnik
+actor Bibliotekarz
+
+usecase "Dodaj ksiazke" as DodajKsiazke
+usecase "Dodaj egzemplarz ksiazki" as DodajEgzemplarz
+usecase "Dodaj czytelnika" as DodajCzytelnika
+usecase "Wypozycz egzemplarz" as WypozyczEgzemplarz
+usecase "Wyswietl ksiazki i egzemplarze" as WyswietlKsiazki
+
+Czytelnik --> WyswietlKsiazki
+Bibliotekarz --> DodajKsiazke
+Bibliotekarz --> DodajEgzemplarz
+Bibliotekarz --> DodajCzytelnika
+Bibliotekarz --> WypozyczEgzemplarz
+Bibliotekarz --> WyswietlKsiazki
+
+' Dodaj szczegóły przypadków użycia za pomocą notatek
+note right of DodajKsiazke
+  1. Bibliotekarz wybiera opcje "Dodaj ksiazke".
+  2. System prosi o tytul i autora.
+  3. Bibliotekarz wprowadza dane.
+  4. System zapisuje ksiazke i potwierdza dodanie.
+end note
+
+note right of DodajEgzemplarz
+  1. Bibliotekarz wybiera opcje "Dodaj egzemplarz ksiazki".
+  2. System wyswietla liste ksiazek.
+  3. Bibliotekarz wybiera ksiazke do dodania egzemplarza.
+  4. System dodaje egzemplarz i potwierdza operacje.
+end note
+
+note right of DodajCzytelnika
+  1. Bibliotekarz wybiera opcje "Dodaj czytelnika".
+  2. System prosi o imie i nazwisko czytelnika.
+  3. Bibliotekarz wprowadza dane.
+  4. System zapisuje czytelnika i potwierdza dodanie.
+end note
+
+note right of WypozyczEgzemplarz
+  1. Bibliotekarz wybiera opcje "Wypozycz egzemplarz".
+  2. System prosi o wybor ksiazki i egzemplarza.
+  3. Bibliotekarz wybiera ksiazke i egzemplarz.
+  4. System prosi o identyfikacje czytelnika.
+  5. Bibliotekarz wybiera czytelnika.
+  6. System sprawdza dostepnosc i realizuje wypozyczenie.
+  7. System potwierdza wypozyczenie.
+end note
+
+note right of WyswietlKsiazki
+  1. Uzytkownik wybiera opcje "Wyswietl ksiazki i egzemplarze".
+  2. System wyswietla liste ksiazek i egzemplarzy z dostepnoscia.
+end note
+
+@enduml
